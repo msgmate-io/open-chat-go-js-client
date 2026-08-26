@@ -1,6 +1,6 @@
 {
   "name": "@open-chat-go/client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Embeddable TypeScript/React client for Open Chat: scoped browser-token auth, typed API client, and a self-contained bot manager/editor built on the Open Chat design system.",
   "license": "MIT",
   "type": "module",
@@ -32,7 +32,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css",
     "build:js": "tsup",
-    "build:css": "tailwindcss -i ./src/styles/globals.css -o ./dist/styles.css --minify",
+    "build:css": "tailwindcss -i ./src/styles/globals.css -o ./dist/styles.css --minify && node scripts/flatten-css-layers.mjs dist/styles.css",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "clean": "rm -rf dist"
@@ -67,6 +67,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tsup": "^8.5.0",
     "typescript": "^5.9.2",
-    "vitest": "^4.1.7"
+    "vitest": "^4.1.7",
+    "postcss": "^8.5.26"
   }
 }

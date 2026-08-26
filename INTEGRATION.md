@@ -404,6 +404,10 @@ Validation gotchas (server returns `400` with a message):
   want the component styles, scope the embed and override as needed.
 - Fonts fall back to system sans. Load **"Signika Negative"** (headings) and **"DM Sans"**
   (body) if you want the exact Open Chat look.
+- `styles.css` is fully compiled, plain CSS (Tailwind cascade layers are flattened at
+  build time). It contains no `@tailwind`/`@apply`/`@layer` directives, so it is safe to
+  run through any standard CSS pipeline, including webpack `postcss-loader` setups that
+  still use Tailwind v3.
 
 ---
 
