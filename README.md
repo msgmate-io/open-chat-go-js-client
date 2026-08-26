@@ -13,6 +13,10 @@ bot manager/editor that matches the Open Chat design system.
   design tokens + primitives, compiled and self-contained. No external UI package
   required.
 
+> **Integrating this into another app (or handing off to a coding agent)?** Read
+> [`INTEGRATION.md`](./INTEGRATION.md) — a detailed, step-by-step integration guide
+> covering the auth model, backend prerequisites, component usage, and troubleshooting.
+
 ---
 
 ## Installation
