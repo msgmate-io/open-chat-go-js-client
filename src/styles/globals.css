@@ -1,0 +1,195 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+@plugin "tailwindcss-animate";
+@custom-variant dark (&:is(.dark *));
+
+/* Scan the vendored design-system primitives and client components. */
+@source "../react/ui";
+@source "../react/components";
+
+/*
+ * Semantic color tokens (vendored from @open-chat-go/ui semantic.css).
+ * Mapped to Tailwind utilities below via @theme inline.
+ */
+:root {
+  --background: #f8f9fb;
+  --foreground: #18181b;
+  --card: #ffffff;
+  --card-foreground: #18181b;
+  --popover: #ffffff;
+  --popover-foreground: #18181b;
+  --primary: #18181b;
+  --primary-foreground: #ffffff;
+  --secondary: #eef0f4;
+  --secondary-foreground: #18181b;
+  --muted: #f1f3f6;
+  --muted-foreground: #64748b;
+  --accent: #e8eaef;
+  --accent-foreground: #171717;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  --brand: #4ade80;
+  --brand-foreground: #171717;
+  --success: #16a34a;
+  --success-foreground: #fafafa;
+  --border: #dfe3ea;
+  --input: #d5dbe4;
+  --ring: #18181b;
+  --radius: 0.6rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #18181b;
+  --sidebar-primary: #18181b;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f1f3f6;
+  --sidebar-accent-foreground: #18181b;
+  --sidebar-border: #dfe3ea;
+  --sidebar-ring: #3b82f6;
+  --surface-elevated: #ffffff;
+  --surface-sunken: #eef0f4;
+  --shadow-color: 220 20% 12%;
+
+  --font-heading: "Signika Negative", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+.dark {
+  --background: #191e24;
+  --foreground: #a6adbb;
+  --card: #1f252d;
+  --card-foreground: #a6adbb;
+  --popover: #1f252d;
+  --popover-foreground: #a6adbb;
+  --primary: #a6adbb;
+  --primary-foreground: #18181b;
+  --secondary: #232b35;
+  --secondary-foreground: #a6adbb;
+  --muted: #1c222a;
+  --muted-foreground: #8b95a8;
+  --accent: #2d3540;
+  --accent-foreground: #a6adbb;
+  --destructive: #7f1d1d;
+  --destructive-foreground: #fafafa;
+  --brand: #4ade80;
+  --brand-foreground: #18181b;
+  --success: #22c55e;
+  --success-foreground: #fafafa;
+  --border: #2f3844;
+  --input: #2f3844;
+  --ring: #a6adbb;
+  --sidebar: #191e24;
+  --sidebar-foreground: #a6adbb;
+  --sidebar-primary: #a6adbb;
+  --sidebar-primary-foreground: #18181b;
+  --sidebar-accent: #232b35;
+  --sidebar-accent-foreground: #a6adbb;
+  --sidebar-border: #2f3844;
+  --sidebar-ring: #3b82f6;
+  --surface-elevated: #252c36;
+  --surface-sunken: #14181d;
+  --shadow-color: 220 30% 4%;
+}
+
+/* Map semantic tokens to Tailwind color/font/radius/shadow utilities. */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-sunken: var(--surface-sunken);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --shadow-xs: 0 1px 2px hsl(var(--shadow-color) / 0.05);
+  --shadow-sm: 0 1px 3px hsl(var(--shadow-color) / 0.08), 0 1px 2px hsl(var(--shadow-color) / 0.04);
+  --shadow-md: 0 4px 12px hsl(var(--shadow-color) / 0.1), 0 2px 4px hsl(var(--shadow-color) / 0.06);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background font-body text-foreground;
+  }
+}
+
+/* Typography scale component classes (vendored from typography.css). */
+@layer components {
+  .type-heading1 { font-family: var(--font-heading); font-size: 4rem; font-weight: 600; line-height: 1.1; }
+  .type-heading2 { font-family: var(--font-heading); font-size: 3.5rem; font-weight: 600; line-height: 1.1; }
+  .type-heading3 { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 600; line-height: 1.15; }
+  .type-heading4 { font-family: var(--font-heading); font-size: 2rem; font-weight: 600; line-height: 1.2; }
+  .type-heading5 { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; }
+  .type-heading6 { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 600; }
+  .type-heading7 { font-family: var(--font-heading); font-size: 1rem; font-weight: 600; }
+  .type-body1 { font-family: var(--font-body); font-size: 2rem; line-height: 1.2; }
+  .type-body2 { font-family: var(--font-body); font-size: 1.75rem; line-height: 1.25; }
+  .type-body3 { font-family: var(--font-body); font-size: 1.5rem; }
+  .type-body4 { font-family: var(--font-body); font-size: 1.25rem; }
+  .type-body5 { font-family: var(--font-body); font-size: 1rem; }
+  .type-body6 { font-family: var(--font-body); font-size: 0.8725rem; }
+  .type-body7 { font-family: var(--font-body); font-size: 0.75rem; }
+
+  @media (min-width: 768px) {
+    .type-heading1 { font-size: 5rem; }
+    .type-heading2 { font-size: 4rem; }
+    .type-heading3 { font-size: 3rem; }
+    .type-body1 { font-size: 2.5rem; }
+    .type-body2 { font-size: 2rem; }
+  }
+}
+
+/* Surface component classes (vendored from surfaces.css). */
+@layer components {
+  .surface-panel {
+    @apply rounded-xl border border-border/80 bg-card text-card-foreground shadow-sm ring-1 ring-black/[0.03] dark:ring-white/[0.04];
+  }
+  .surface-interactive {
+    @apply rounded-xl border border-border/80 bg-card text-card-foreground shadow-sm ring-1 ring-black/[0.03] dark:ring-white/[0.04];
+    transition:
+      box-shadow 200ms ease,
+      transform 200ms ease,
+      border-color 200ms ease;
+  }
+  .surface-interactive:hover {
+    @apply border-border shadow-md -translate-y-0.5;
+  }
+  .surface-sunken {
+    @apply rounded-lg border border-border/60 bg-surface-sunken;
+  }
+  .surface-elevated {
+    @apply bg-surface-elevated;
+  }
+}
