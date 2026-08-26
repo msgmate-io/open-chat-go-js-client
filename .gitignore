@@ -92,7 +92,11 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+
+# NOTE: the top-level dist/ is intentionally NOT ignored — the release workflow
+# commits the built dist/ to release tags so `npm i github:...#tag` needs no
+# build step on the consumer side. Only ignore example-app build output.
+examples/**/dist/
 
 # Gatsby files
 .cache/
