@@ -2,7 +2,7 @@
   "name": "@open-chat-go/client",
   "version": "0.1.1",
   "description": "Embeddable TypeScript/React client for Open Chat: scoped browser-token auth, typed API client, and a self-contained bot manager/editor built on the Open Chat design system.",
-  "license": "LGPL-3.0-or-later",
+  "license": "AGPL-3.0-or-later",
   "type": "module",
   "sideEffects": [
     "**/*.css"
